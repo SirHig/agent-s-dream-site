@@ -16,7 +16,7 @@ const Navigation = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <h1 className="font-serif text-2xl font-bold text-foreground">
-            Elite Realty
+            Simply Real Estate Team
           </h1>
 
           {/* Desktop Navigation */}

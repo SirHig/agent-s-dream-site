@@ -78,7 +78,7 @@ const Contact = () => {
                     <h3 className="font-serif text-lg font-bold text-foreground mb-2">
                       Email
                     </h3>
-                    <p className="text-muted-foreground">contact@eliterealty.com</p>
+                    <p className="text-muted-foreground">contact@simplyrealestateteam.com</p>
                   </div>
                 </div>
               </CardContent>
