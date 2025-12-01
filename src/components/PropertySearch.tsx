@@ -108,9 +108,9 @@ const PropertySearch = () => {
             </div>
 
             <div className="text-center text-sm text-muted-foreground border-t border-border pt-4">
-              <p className="font-medium">IDX Integration Placeholder</p>
+              <p className="font-medium">BuyerBuddy IDX Ready</p>
               <p className="text-xs mt-1">
-                This section will be replaced with your IDX provider's search widget
+                Add BuyerBuddy widget codes here to display live property search
               </p>
             </div>
           </div>
