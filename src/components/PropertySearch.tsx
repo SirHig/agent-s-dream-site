@@ -24,94 +24,29 @@ const PropertySearch = () => {
             </p>
           </div>
 
-          {/* IDX Search Widget Placeholder */}
+          {/* BuyerBuddy IDX Search Widget */}
           <div className="bg-background border border-border rounded-lg p-8 shadow-lg">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
-              <div className="lg:col-span-2">
-                <Input
-                  placeholder="City, Neighborhood, or ZIP"
-                  className="h-12"
-                />
-              </div>
+            {/* 
+              To integrate BuyerBuddy search widget:
+              1. Log into your BuyerBuddy dashboard at https://www.mbb2.com
+              2. Navigate to Widgets or Integration section
+              3. Copy the search widget HTML code (usually a div with data attributes or script)
+              4. Replace this comment and the placeholder below with that code
               
-              <Select>
-                <SelectTrigger className="h-12">
-                  <SelectValue placeholder="Property Type" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="house">House</SelectItem>
-                  <SelectItem value="condo">Condo</SelectItem>
-                  <SelectItem value="townhouse">Townhouse</SelectItem>
-                  <SelectItem value="land">Land</SelectItem>
-                </SelectContent>
-              </Select>
-
-              <Select>
-                <SelectTrigger className="h-12">
-                  <SelectValue placeholder="Price Range" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="0-500k">$0 - $500K</SelectItem>
-                  <SelectItem value="500k-1m">$500K - $1M</SelectItem>
-                  <SelectItem value="1m-2m">$1M - $2M</SelectItem>
-                  <SelectItem value="2m+">$2M+</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-              <Select>
-                <SelectTrigger>
-                  <SelectValue placeholder="Beds" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="any">Any</SelectItem>
-                  <SelectItem value="1+">1+</SelectItem>
-                  <SelectItem value="2+">2+</SelectItem>
-                  <SelectItem value="3+">3+</SelectItem>
-                  <SelectItem value="4+">4+</SelectItem>
-                  <SelectItem value="5+">5+</SelectItem>
-                </SelectContent>
-              </Select>
-
-              <Select>
-                <SelectTrigger>
-                  <SelectValue placeholder="Baths" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="any">Any</SelectItem>
-                  <SelectItem value="1+">1+</SelectItem>
-                  <SelectItem value="2+">2+</SelectItem>
-                  <SelectItem value="3+">3+</SelectItem>
-                  <SelectItem value="4+">4+</SelectItem>
-                </SelectContent>
-              </Select>
-
-              <Select>
-                <SelectTrigger>
-                  <SelectValue placeholder="Min Sqft" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="any">Any</SelectItem>
-                  <SelectItem value="1000">1,000+</SelectItem>
-                  <SelectItem value="2000">2,000+</SelectItem>
-                  <SelectItem value="3000">3,000+</SelectItem>
-                  <SelectItem value="4000">4,000+</SelectItem>
-                  <SelectItem value="5000">5,000+</SelectItem>
-                </SelectContent>
-              </Select>
-
-              <Button className="h-10" size="lg">
-                <Search className="mr-2 h-4 w-4" />
-                Search
-              </Button>
-            </div>
-
-            <div className="text-center text-sm text-muted-foreground border-t border-border pt-4">
-              <p className="font-medium">BuyerBuddy IDX Ready</p>
-              <p className="text-xs mt-1">
-                Add BuyerBuddy widget codes here to display live property search
-              </p>
+              Example: <div data-mbb-widget="search" data-mbb-config="..."></div>
+            */}
+            
+            <div id="mbb-search-widget" className="min-h-[300px] flex items-center justify-center">
+              <div className="text-center text-muted-foreground">
+                <Search className="w-16 h-16 mx-auto mb-4 opacity-20" />
+                <p className="font-medium text-lg mb-2">BuyerBuddy Search Widget</p>
+                <p className="text-sm max-w-md">
+                  To display the live MLS search, add your BuyerBuddy widget code from your dashboard.
+                </p>
+                <p className="text-xs mt-3 opacity-70">
+                  Dashboard → Widgets → Search Widget
+                </p>
+              </div>
             </div>
           </div>
         </motion.div>
