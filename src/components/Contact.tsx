@@ -97,7 +97,7 @@ const Contact = () => {
                     <h3 className="font-serif text-lg font-bold text-foreground mb-2">
                       Phone
                     </h3>
-                    <p className="text-muted-foreground">(555) 123-4567</p>
+                    <p className="text-muted-foreground">(763) 259-8393</p>
                   </div>
                 </div>
               </CardContent>
@@ -114,7 +114,7 @@ const Contact = () => {
                       Email
                     </h3>
                     <p className="text-muted-foreground">
-                      contact@simplyrealestateteam.com
+                      nancy.r@results.net
                     </p>
                   </div>
                 </div>
@@ -132,9 +132,9 @@ const Contact = () => {
                       Office
                     </h3>
                     <p className="text-muted-foreground">
-                      123 Luxury Lane
+                      2605 Campus Dr
                       <br />
-                      Beverly Hills, CA 90210
+                      Plymouth, MN 55414
                     </p>
                   </div>
                 </div>
