@@ -2,10 +2,10 @@ import { motion } from "framer-motion";
 import { Award, Users, Home, TrendingUp } from "lucide-react";
 
 const stats = [
-  { icon: Home, value: "200+", label: "Properties Sold" },
-  { icon: Users, value: "150+", label: "Happy Clients" },
+  { icon: Home, value: "100+", label: "Properties Sold" },
+  { icon: Users, value: "125+", label: "Happy Clients" },
   { icon: Award, value: "15+", label: "Years Experience" },
-  { icon: TrendingUp, value: "$50M+", label: "Sales Volume" },
+  { icon: TrendingUp, value: "$XX+", label: "Sales Volume" },
 ];
 
 const About = () => {
@@ -23,13 +23,13 @@ const About = () => {
               Dedicated to Your Success
             </h2>
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              With over 15 years of experience in luxury real estate, I bring
+              With over 15 years of experience in real estate, I bring
               unparalleled expertise and dedication to every client. My approach
               combines deep market knowledge with personalized service to ensure
               you find not just a house, but your perfect home.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Whether you're buying your first home, upgrading to a luxury estate,
+              Whether you're buying your first home, upgrading for your expanding family,
               or investing in property, I'm committed to making your real estate
               journey seamless and rewarding.
             </p>
