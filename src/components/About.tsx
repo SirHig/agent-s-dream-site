@@ -29,7 +29,7 @@ const About = () => {
               you find not just a house, but your perfect home.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Whether you're buying your first home, upgrading for your expanding family,
+              Whether you're buying your first home, upgrading to a larger space,
               or investing in property, I'm committed to making your real estate
               journey seamless and rewarding.
             </p>
