@@ -9,6 +9,7 @@ import { useState } from "react";
 
 const Contact = () => {
   const { toast } = useToast();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -19,7 +20,10 @@ const Contact = () => {
   // Netlify-compatible form encoder
   const encode = (data: Record<string, string>) =>
     Object.keys(data)
-      .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+      .map(
+        (key) =>
+          encodeURIComponent(key) + "=" + encodeURIComponent(data[key] ?? "")
+      )
       .join("&");
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -31,7 +35,10 @@ const Contact = () => {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: encode({
           "form-name": "contact",
-          ...formData,
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
         }),
       });
 
@@ -42,6 +49,7 @@ const Contact = () => {
 
       setFormData({ name: "", email: "", phone: "", message: "" });
     } catch (error) {
+      console.error(error);
       toast({
         title: "Something went wrong",
         description: "Please try again or reach out directly.",
@@ -65,13 +73,74 @@ const Contact = () => {
             Let&apos;s Connect
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Ready to find your dream home? Get in touch today for a personalized consultation.
+            Ready to find your dream home? Get in touch today for a personalized
+            consultation.
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {/* Contact Info Cards */}
-          {/* ... cards unchanged ... */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="space-y-6"
+          >
+            <Card>
+              <CardContent className="p-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-serif text-lg font-bold text-foreground mb-2">
+                      Phone
+                    </h3>
+                    <p className="text-muted-foreground">(555) 123-4567</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardContent className="p-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Mail className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-serif text-lg font-bold text-foreground mb-2">
+                      Email
+                    </h3>
+                    <p className="text-muted-foreground">
+                      contact@simplyrealestateteam.com
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardContent className="p-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-serif text-lg font-bold text-foreground mb-2">
+                      Office
+                    </h3>
+                    <p className="text-muted-foreground">
+                      123 Luxury Lane
+                      <br />
+                      Beverly Hills, CA 90210
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
 
           {/* Contact Form */}
           <motion.div
@@ -91,13 +160,16 @@ const Contact = () => {
                   onSubmit={handleSubmit}
                   className="space-y-6"
                 >
-                  {/* Required hidden input for Netlify */}
+                  {/* Required Netlify hidden fields */}
                   <input type="hidden" name="form-name" value="contact" />
                   <input type="hidden" name="bot-field" />
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-medium mb-2" htmlFor="name">
+                      <label
+                        htmlFor="name"
+                        className="block text-sm font-medium text-foreground mb-2"
+                      >
                         Name
                       </label>
                       <Input
@@ -111,9 +183,11 @@ const Contact = () => {
                         required
                       />
                     </div>
-
                     <div>
-                      <label className="block text-sm font-medium mb-2" htmlFor="email">
+                      <label
+                        htmlFor="email"
+                        className="block text-sm font-medium text-foreground mb-2"
+                      >
                         Email
                       </label>
                       <Input
@@ -131,12 +205,16 @@ const Contact = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2" htmlFor="phone">
+                    <label
+                      htmlFor="phone"
+                      className="block text-sm font-medium text-foreground mb-2"
+                    >
                       Phone
                     </label>
                     <Input
                       id="phone"
                       name="phone"
+                      type="tel"
                       placeholder="(555) 123-4567"
                       value={formData.phone}
                       onChange={(e) =>
@@ -146,7 +224,10 @@ const Contact = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2" htmlFor="message">
+                    <label
+                      htmlFor="message"
+                      className="block text-sm font-medium text-foreground mb-2"
+                    >
                       Message
                     </label>
                     <Textarea
