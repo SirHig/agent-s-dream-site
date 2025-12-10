@@ -8,6 +8,7 @@ import PropertyDetail from "./pages/PropertyDetail";
 import ListingResults from "./pages/ListingResults";
 import ListingDetails from "./pages/ListingDetails";
 import NotFound from "./pages/NotFound";
+import Delano from "./pages/Delano"; // ⬅ NEW
 
 const queryClient = new QueryClient();
 
@@ -22,7 +23,11 @@ const App = () => (
           <Route path="/property/:id" element={<PropertyDetail />} />
           <Route path="/listing-results" element={<ListingResults />} />
           <Route path="/listing-details/:id" element={<ListingDetails />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+
+          {/* ✅ CUSTOM ROUTES GO HERE */}
+          <Route path="/delano" element={<Delano />} />
+
+          {/* KEEP THIS LAST */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
