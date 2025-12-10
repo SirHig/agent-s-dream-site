@@ -2,10 +2,11 @@ import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
-import { mainNavItems, NavItem } from "./navlinks";
+import { mainNavItems, NavItem } from "@/components/navlinks";
 
 const Navigation = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false); // mobile menu
+  const [isCommunitiesOpen, setIsCommunitiesOpen] = useState(false); // desktop dropdown
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -20,8 +21,6 @@ const Navigation = () => {
       if (location.pathname === "/") {
         scrollToSection(item.sectionId);
       } else {
-        // If we're not on the homepage, go home.
-        // (Advanced version could scroll after navigation; this is fine for now.)
         navigate("/");
         setIsOpen(false);
       }
@@ -44,7 +43,12 @@ const Navigation = () => {
             {mainNavItems.map((item) => {
               if (item.type === "menu") {
                 return (
-                  <div key={item.label} className="relative group">
+                  <div
+                    key={item.label}
+                    className="relative"
+                    onMouseEnter={() => setIsCommunitiesOpen(true)}
+                    onMouseLeave={() => setIsCommunitiesOpen(false)}
+                  >
                     <button
                       className="flex items-center gap-1 text-foreground hover:text-primary transition-colors"
                       type="button"
@@ -52,21 +56,26 @@ const Navigation = () => {
                       {item.label}
                       <ChevronDown size={16} />
                     </button>
-                    <div className="absolute left-0 mt-2 hidden min-w-[200px] rounded-md border border-border bg-background shadow-lg group-hover:block">
-                      <ul className="py-2">
-                        {item.children.map((child) => (
-                          <li key={child.to}>
-                            <Link
-                              to={child.to}
-                              className="block px-4 py-2 text-sm text-foreground hover:bg-muted hover:text-primary"
-                              onClick={() => setIsOpen(false)}
-                            >
-                              {child.label}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                    {isCommunitiesOpen && (
+                      <div className="absolute left-0 mt-2 min-w-[220px] rounded-md border border-border bg-background shadow-lg z-50">
+                        <ul className="py-2">
+                          {item.children.map((child) => (
+                            <li key={child.to}>
+                              <Link
+                                to={child.to}
+                                className="block px-4 py-2 text-sm text-foreground hover:bg-muted hover:text-primary"
+                                onClick={() => {
+                                  setIsCommunitiesOpen(false);
+                                  setIsOpen(false);
+                                }}
+                              >
+                                {child.label}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
                   </div>
                 );
               }
@@ -85,7 +94,15 @@ const Navigation = () => {
             })}
 
             {/* Call-to-action button */}
-            <Button onClick={() => handleNavClick({ label: "Contact", type: "scroll", sectionId: "contact" })}>
+            <Button
+              onClick={() =>
+                handleNavClick({
+                  label: "Contact",
+                  type: "scroll",
+                  sectionId: "contact",
+                })
+              }
+            >
               Get In Touch
             </Button>
           </div>
