@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Award, Users, Home, TrendingUp } from "lucide-react";
-
+import nancyPic from "../assets/nancypic.jpg";
 const stats = [
   { icon: Home, value: "100+", label: "Properties Sold" },
   { icon: Users, value: "125+", label: "Happy Clients" },
@@ -37,48 +37,56 @@ const About = () => {
           </motion.div>
 
           {/* Right: Photo + Stats */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="space-y-8"
-          >
-            {/* Portrait / About Image */}
-            <div className="relative aspect-[4/5] w-full max-w-sm mx-auto lg:mx-0 rounded-2xl overflow-hidden border border-border bg-card shadow-lg">
-              <img
-                src="/images/nancy-rowbotham.jpg" // <-- update this path/filename as needed
-                alt="Nancy Rowbotham, your trusted real estate guide"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent" />
-            </div>
+<motion.div
+  initial={{ opacity: 0, x: 30 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.6 }}
+  className="flex flex-col items-center lg:items-center space-y-8"
+>
+  {/* Portrait / About Image */}
+  <div className="
+  relative w-48 h-64 md:w-56 md:h-72 lg:w-64 lg:h-80
+  rounded-2xl overflow-hidden bg-card shadow-xl hover:shadow-2xl 
+  transition-all duration-300 border border-border
+">
+  <img
+    src={nancyPic}
+    alt="Nancy Rowbotham, your trusted real estate guide"
+    className="w-full h-full object-cover object-top"
+  />
 
-            {/* Stats Grid */}
-            <div className="grid grid-cols-2 gap-6">
-              {stats.map((stat, index) => {
-                const Icon = stat.icon;
-                return (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="bg-card border border-border rounded-lg p-6 text-center"
-                  >
-                    <Icon className="w-8 h-8 text-primary mx-auto mb-3" />
-                    <div className="font-serif text-3xl font-bold text-foreground mb-2">
-                      {stat.value}
-                    </div>
-                    <div className="text-sm text-muted-foreground">
-                      {stat.label}
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </motion.div>
+  {/* soft vignette */}
+  <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/30" />
+
+  {/* inner glow */}
+  <div className="absolute inset-0 ring-1 ring-white/20" />
+</div>
+
+  {/* Stats Grid */}
+  <div className="grid grid-cols-2 gap-6 w-full">
+    {stats.map((stat, index) => {
+      const Icon = stat.icon;
+      return (
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: index * 0.1 }}
+          className="bg-card border border-border rounded-lg p-6 text-center"
+        >
+          <Icon className="w-12 h-12 text-primary mx-auto mb-3" />
+          <div className="font-serif text-5xl font-bold text-foreground tracking-tight mb-2">
+            {stat.value}
+          </div>
+          <div className="text-base md:text-lg text-muted-foreground">{stat.label}</div>
+        </motion.div>
+      );
+    })}
+  </div>
+</motion.div>
+
         </div>
       </div>
     </section>
