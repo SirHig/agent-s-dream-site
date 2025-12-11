@@ -23,7 +23,7 @@ const App = () => (
           <Route path="/property/:id" element={<PropertyDetail />} />
           <Route path="/listing-results" element={<ListingResults />} />
           <Route path="/listing-details/:id" element={<ListingDetails />} />
-
+          <Route path="/listing-details" element={<ListingDetails />} />
           {/* ✅ CUSTOM ROUTES GO HERE */}
           <Route path="/delano" element={<Delano />} />
           
