@@ -16,6 +16,12 @@ export type Neighborhood = {
   blurb: string;
 };
 
+export type CommunityImage = {
+  src: string;
+  alt: string;
+  label?: string;
+};
+
 export type CommunityPageConfig = {
   slug: string;
   name: string;
@@ -29,6 +35,10 @@ export type CommunityPageConfig = {
   lifestyleBody: string;
   listingsCtaLabel?: string;
   listingsCtaHref?: string;
+
+  // NEW
+  heroImage?: CommunityImage;
+  gallery?: CommunityImage[];
 };
 
 type CommunityPageProps = {
@@ -48,6 +58,8 @@ const CommunityPage = ({ config }: CommunityPageProps) => {
     lifestyleBody,
     listingsCtaLabel = "View all properties →",
     listingsCtaHref = "#",
+    heroImage,
+    gallery = [],
   } = config;
 
   const cityName = name.split(",")[0];
@@ -83,26 +95,44 @@ const CommunityPage = ({ config }: CommunityPageProps) => {
             </div>
           </div>
 
-          {/* Hero visual placeholder */}
+          {/* Hero visual: photo if provided, fallback to original block */}
           <div className="relative">
-            <div className="aspect-[4/3] w-full rounded-2xl bg-emerald-900/80 shadow-lg overflow-hidden">
-              <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_0_0,#a7f3d0,transparent_50%),radial-gradient(circle_at_100%_100%,#34d399,transparent_55%)]" />
-              <div className="relative h-full flex flex-col justify-between p-6 text-emerald-50">
-                <div>
-                  <p className="text-xs uppercase tracking-[0.25em] mb-2">
-                    Simply Real Estate Team
-                  </p>
-                  <p className="text-lg font-semibold">
-                    Local insight meets thoughtful guidance.
-                  </p>
-                </div>
-                <div className="space-y-2 text-sm">
-                  <p>• Personalized strategies for buying and selling</p>
-                  <p>• Data-informed pricing and negotiation</p>
-                  <p>• A calm, organized process from first call to closing</p>
+            {heroImage ? (
+              <figure className="aspect-[4/3] w-full rounded-2xl overflow-hidden border border-emerald-100 bg-white/60 shadow-lg">
+                <img
+                  src={heroImage.src}
+                  alt={heroImage.alt}
+                  className="h-full w-full object-cover"
+                  loading="lazy"
+                />
+                {heroImage.label && (
+                  <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent px-4 py-3">
+                    <p className="text-xs font-medium text-emerald-50">
+                      {heroImage.label}
+                    </p>
+                  </figcaption>
+                )}
+              </figure>
+            ) : (
+              <div className="aspect-[4/3] w-full rounded-2xl bg-emerald-900/80 shadow-lg overflow-hidden">
+                <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_0_0,#a7f3d0,transparent_50%),radial-gradient(circle_at_100%_100%,#34d399,transparent_55%)]" />
+                <div className="relative h-full flex flex-col justify-between p-6 text-emerald-50">
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.25em] mb-2">
+                      Simply Real Estate Team
+                    </p>
+                    <p className="text-lg font-semibold">
+                      Local insight meets thoughtful guidance.
+                    </p>
+                  </div>
+                  <div className="space-y-2 text-sm">
+                    <p>• Personalized strategies for buying and selling</p>
+                    <p>• Data-informed pricing and negotiation</p>
+                    <p>• A calm, organized process from first call to closing</p>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </section>
 
@@ -158,6 +188,35 @@ const CommunityPage = ({ config }: CommunityPageProps) => {
             ))}
           </div>
         </section>
+
+        {/* Optional photo strip / gallery */}
+        {gallery.length > 0 && (
+          <section aria-label={`${cityName} photos`}>
+            <h2 className="text-xl font-semibold text-foreground mb-4">
+              Around {cityName}
+            </h2>
+            <div className="grid gap-4 sm:grid-cols-3">
+              {gallery.map((photo) => (
+                <figure
+                  key={photo.src}
+                  className="group relative overflow-hidden rounded-2xl border border-border bg-white/70 shadow-sm"
+                >
+                  <img
+                    src={photo.src}
+                    alt={photo.alt}
+                    className="h-40 w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  {photo.label && (
+                    <figcaption className="px-3 py-2 text-xs text-muted-foreground">
+                      {photo.label}
+                    </figcaption>
+                  )}
+                </figure>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* Neighborhoods */}
         <section aria-label="Neighborhoods">
