@@ -8,7 +8,7 @@ import PropertyDetail from "./pages/PropertyDetail";
 import ListingResults from "./pages/ListingResults";
 import ListingDetails from "./pages/ListingDetails";
 import NotFound from "./pages/NotFound";
-import Delano from "./pages/delano"; // ⬅ NEW
+import Delano from "./pages/communities/delano"; // ⬅ NEW
 
 const queryClient = new QueryClient();
 

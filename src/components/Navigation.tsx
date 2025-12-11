@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
@@ -7,6 +7,10 @@ import { mainNavItems, NavItem } from "@/components/navlinks";
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false); // mobile menu
   const [isCommunitiesOpen, setIsCommunitiesOpen] = useState(false); // desktop dropdown
+
+  // NEW: small delay to avoid flicker when moving between button & menu
+  const communitiesTimeoutRef = useRef<number | null>(null);
+
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -30,6 +34,23 @@ const Navigation = () => {
     }
   };
 
+  // --- Communities hover handlers ---
+  const openCommunities = () => {
+    if (communitiesTimeoutRef.current !== null) {
+      window.clearTimeout(communitiesTimeoutRef.current);
+      communitiesTimeoutRef.current = null;
+    }
+    setIsCommunitiesOpen(true);
+  };
+
+  const closeCommunities = () => {
+    // tiny delay prevents that "I moved 1px and it vanished" feeling
+    communitiesTimeoutRef.current = window.setTimeout(() => {
+      setIsCommunitiesOpen(false);
+      communitiesTimeoutRef.current = null;
+    }, 120);
+  };
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="container mx-auto px-4 py-4">
@@ -46,16 +67,19 @@ const Navigation = () => {
                   <div
                     key={item.label}
                     className="relative"
-                    onMouseEnter={() => setIsCommunitiesOpen(true)}
-                    onMouseLeave={() => setIsCommunitiesOpen(false)}
+                    onMouseEnter={openCommunities}
+                    onMouseLeave={closeCommunities}
                   >
                     <button
                       className="flex items-center gap-1 text-foreground hover:text-primary transition-colors"
                       type="button"
+                      aria-haspopup="menu"
+                      aria-expanded={isCommunitiesOpen}
                     >
                       {item.label}
                       <ChevronDown size={16} />
                     </button>
+
                     {isCommunitiesOpen && (
                       <div className="absolute left-0 mt-2 min-w-[220px] rounded-md border border-border bg-background shadow-lg z-50">
                         <ul className="py-2">
@@ -65,6 +89,13 @@ const Navigation = () => {
                                 to={child.to}
                                 className="block px-4 py-2 text-sm text-foreground hover:bg-muted hover:text-primary"
                                 onClick={() => {
+                                  // close immediately on click
+                                  if (communitiesTimeoutRef.current !== null) {
+                                    window.clearTimeout(
+                                      communitiesTimeoutRef.current
+                                    );
+                                    communitiesTimeoutRef.current = null;
+                                  }
                                   setIsCommunitiesOpen(false);
                                   setIsOpen(false);
                                 }}

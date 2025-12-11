@@ -1,0 +1,1 @@
+<bb-widget data-type="SearchDetails"></bb-widget>
