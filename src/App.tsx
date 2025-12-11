@@ -26,7 +26,7 @@ const App = () => (
 
           {/* ✅ CUSTOM ROUTES GO HERE */}
           <Route path="/delano" element={<Delano />} />
-
+          
           {/* KEEP THIS LAST */}
           <Route path="*" element={<NotFound />} />
         </Routes>
