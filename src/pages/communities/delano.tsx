@@ -6,9 +6,9 @@ import CommunityPage, {
 } from "@/components/community/CommunityPage";
 
 // 🔽 Import your images
-import delanoHero from "@/assets/communities/delano-hero.jpg";
-import delanoPark from "@/assets/communities/delano-park.jpg";
-import delanoDowntown from "@/assets/communities/delano-downtown.jpg";
+import delanoHero from "@/assets/communities/delano/delano-hero.jpg";
+import delanoPark from "@/assets/communities/delano/delano-park.jpg";
+import delanoDowntown from "@/assets/communities/delano/delano-downtown.jpg";
 
 const delanoConfig: CommunityPageConfig = {
   slug: "delano",
