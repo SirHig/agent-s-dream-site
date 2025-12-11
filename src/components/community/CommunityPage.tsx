@@ -1,5 +1,4 @@
 // src/components/community/CommunityPage.tsx
-import BuyerBuddyWidget from "../BuyerBuddyWidget";
 
 export type CommunityStat = {
   label: string;
@@ -84,7 +83,7 @@ const CommunityPage = ({ config }: CommunityPageProps) => {
             </div>
           </div>
 
-          {/* Hero “image” placeholder */}
+          {/* Hero visual placeholder */}
           <div className="relative">
             <div className="aspect-[4/3] w-full rounded-2xl bg-emerald-900/80 shadow-lg overflow-hidden">
               <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_0_0,#a7f3d0,transparent_50%),radial-gradient(circle_at_100%_100%,#34d399,transparent_55%)]" />
@@ -229,28 +228,24 @@ const CommunityPage = ({ config }: CommunityPageProps) => {
           </div>
         </section>
 
-        {/* Listings anchor */}
-       <section id="listings" aria-label={`${cityName} listings preview`}>
-        <div className="flex items-baseline justify-between mb-4">
-        <h2 className="text-xl font-semibold text-foreground">
-            Featured {cityName} Listings
-        </h2>
-        <a
-        href={listingsCtaHref}
-        className="text-xs font-medium text-emerald-700 hover:text-emerald-800"
-        target="_blank"
-        rel="noopener noreferrer"
-        >
-      {listingsCtaLabel}
-    </a>
-  </div>
-
-  <div className="rounded-xl border border-border bg-background/80 p-4">
-    <BuyingBuddyWidget
-      shortcode={config.listingsShortcode ?? ""}
-    />
-  </div>
-</section>
+        {/* Listings anchor – still just a placeholder box for now */}
+        <section id="listings" aria-label={`${cityName} listings preview`}>
+          <div className="flex items-baseline justify-between mb-4">
+            <h2 className="text-xl font-semibold text-foreground">
+              Featured {cityName} Listings
+            </h2>
+            <a
+              href={listingsCtaHref}
+              className="text-xs font-medium text-emerald-700 hover:text-emerald-800"
+            >
+              {listingsCtaLabel}
+            </a>
+          </div>
+          <div className="rounded-xl border border-dashed border-border bg-background/60 p-6 text-sm text-muted-foreground">
+            Listings for {cityName} will appear here once IDX integration is
+            complete.
+          </div>
+        </section>
       </div>
     </main>
   );

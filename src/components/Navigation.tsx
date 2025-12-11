@@ -55,10 +55,12 @@ const Navigation = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <h1 className="font-serif text-2xl font-bold text-foreground">
+          <Link
+            to="/"
+            className="font-serif text-2xl font-bold text-foreground hover:text-primary transition-colors cursor-pointer select-none">
+    
             Simply Real Estate Team
-          </h1>
-
+          </Link>
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             {mainNavItems.map((item) => {
