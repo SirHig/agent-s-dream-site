@@ -41,7 +41,7 @@ export const mainNavItems: NavItem[] = [
     type: "menu",
     children: [
       { label: "Delano, MN", type: "route", to: "/delano" },
-      // later: { label: "Buffalo, MN", type: "route", to: "/buffalo" },
+      { label: "Buffalo, MN", type: "route", to: "/buffalo" },
       // etc…
     ],
   },

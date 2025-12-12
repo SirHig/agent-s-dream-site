@@ -9,7 +9,7 @@ import ListingResults from "./pages/ListingResults";
 import ListingDetails from "./pages/ListingDetails";
 import NotFound from "./pages/NotFound";
 import Delano from "./pages/communities/delano"; // ⬅ NEW
-
+import Buffalo from "./pages/communities/buffalo"; // ⬅ NEW
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -26,7 +26,7 @@ const App = () => (
           <Route path="/listing-details" element={<ListingDetails />} />
           {/* ✅ CUSTOM ROUTES GO HERE */}
           <Route path="/delano" element={<Delano />} />
-          
+          <Route path="/buffalo" element={<Buffalo />} />
           {/* KEEP THIS LAST */}
           <Route path="*" element={<NotFound />} />
         </Routes>
