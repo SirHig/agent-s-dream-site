@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { mainNavItems, NavItem } from "@/components/navlinks";
+import logo from "@/assets/logo.jpg";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false); // mobile menu
@@ -57,8 +58,14 @@ const Navigation = () => {
         <div className="flex items-center justify-between">
           <Link
             to="/"
-            className="font-serif text-2xl font-bold text-foreground hover:text-primary transition-colors cursor-pointer select-none">
-    
+            className="flex items-center gap-3 font-serif text-2xl font-bold text-foreground hover:text-primary transition-colors cursor-pointer select-none"
+          >
+            <img
+              src={logo}
+              alt="Simply Real Estate Team"
+              className="h-10 w-10 rounded-sm object-cover"
+              loading="eager"
+            />
             Simply Real Estate Team
           </Link>
           {/* Desktop Navigation */}

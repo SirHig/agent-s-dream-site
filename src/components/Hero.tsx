@@ -1,8 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { useState, type CSSProperties } from "react";
 import heroImage from "@/assets/hero-home.jpg";
 
 const Hero = () => {
+  const [videoDuration, setVideoDuration] = useState<number | null>(null);
+  const [isVideoReady, setIsVideoReady] = useState(false);
+
   const scrollToContact = () => {
     const element = document.getElementById("contact");
     element?.scrollIntoView({ behavior: "smooth" });
@@ -10,21 +14,34 @@ const Hero = () => {
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${heroImage})` }}
-      >
+      <div className="absolute inset-0 bg-background">
         <video
-          className="absolute inset-0 h-full w-full object-cover"
+          className={`hero-video absolute inset-0 h-full w-full object-cover${isVideoReady ? " hero-video--animate" : ""}`}
           autoPlay
           muted
           loop
           playsInline
           preload="metadata"
-          poster={heroImage}
+          onLoadedMetadata={(event) => {
+            const { duration } = event.currentTarget;
+            if (Number.isFinite(duration)) {
+              setVideoDuration(duration);
+            }
+          }}
+          onPlay={() => setIsVideoReady(true)}
+          style={
+            videoDuration
+              ? ({ ["--hero-video-duration" as string]: `${videoDuration}s` } as CSSProperties)
+              : undefined
+          }
         >
           <source src="/hero.webm" type="video/webm" />
           <source src="/hero.mp4" type="video/mp4" />
+          <img
+            src={heroImage}
+            alt=""
+            className="h-full w-full object-cover"
+          />
         </video>
         <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-background/40" />
       </div>
